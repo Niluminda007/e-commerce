@@ -1,0 +1,46 @@
+import { useEffect, useMemo } from "react";
+import CategoryBar from "../components/Category/CategoryBar";
+import { useFetchProductsByCategory } from "../hooks/useProducts";
+import Products from "../components/ProductList/Products";
+import { useParams } from "react-router-dom";
+import { categories } from "../constants";
+import Spinner from "../components/Spinner/Spinner";
+import { UserAuth } from "../context/AuthContext";
+
+const ProductListStyleBaseClass =
+  "w-[100vw] px:4 sm:px-20 bg-transparent py-6 flex flex-col absolute top-[7rem] transition ease-linear delay-100";
+
+const ProductList = () => {
+  const { categoryName } = useParams<string>();
+  const { fetchProductsByCategory, isLoading, data } =
+    useFetchProductsByCategory();
+  const { auhtHeader } = UserAuth();
+  const category = categories.find((item) => item.name === categoryName);
+  const activeCategory = useMemo(
+    () => (category === undefined ? 1 : category!.id),
+    [categoryName]
+  );
+  useEffect(() => {
+    fetchProductsByCategory(activeCategory, auhtHeader);
+  }, [activeCategory]);
+  return (
+    <>
+      <Spinner
+        type="OTHER"
+        color="#7E22CE"
+        loadingText="loading....."
+        isLoading={isLoading}
+      />
+
+      <div
+        className={`${ProductListStyleBaseClass} ${
+          isLoading ? "opacity-0" : "opacity-100"
+        }`}>
+        <CategoryBar activeCategory={activeCategory} />
+        <Products products={data} />
+      </div>
+    </>
+  );
+};
+
+export default ProductList;
