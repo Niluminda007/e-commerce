@@ -16,7 +16,7 @@ import {
   attributeMap,
 } from "../constants";
 
-export const transformImageUrl = (url: string, isMobile: boolean) => {
+export const transformImageUrl = (url: string, isMobile?: boolean) => {
   const width = isMobile ? IMAGE_WIDTH_MOBILE : IMAGE_WIDTH_DESKTOP;
   const format = isMobile ? IMAGE_FORMAT_MOBILE : IMAGE_FORMAT_DESKTOP;
 

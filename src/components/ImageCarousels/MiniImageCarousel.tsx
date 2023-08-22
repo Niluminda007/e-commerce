@@ -35,7 +35,7 @@ const MiniImageCarousel = (props: MiniImageCarouselProps) => {
             onMouseLeave={handleMouseLeave}>
             <img
               className={`w-full`}
-              src={transformImageUrl(image.url, "200")}
+              src={transformImageUrl(image.url)}
               width="10"
               height="10"
               alt={`thumbinal_image_${index}`}
