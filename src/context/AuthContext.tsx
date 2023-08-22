@@ -1,4 +1,4 @@
-import { useContext, createContext, useState, useEffect } from "react";
+import { useContext, createContext, useState } from "react";
 import {
   AuthContextType,
   GoogleSignInModel,
@@ -6,12 +6,7 @@ import {
   UserRegisterModel,
   UserType,
 } from "../Types/InterfaceTypes";
-import {
-  GoogleAuthProvider,
-  signInWithPopup,
-  signOut,
-  onAuthStateChanged,
-} from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import createAxiosInstance from "../utils/axiosInstance";
 
