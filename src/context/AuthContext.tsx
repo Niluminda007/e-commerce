@@ -1,4 +1,4 @@
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 import {
   AuthContextType,
   GoogleSignInModel,
@@ -6,9 +6,16 @@ import {
   UserRegisterModel,
   UserType,
 } from "../Types/InterfaceTypes";
-import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+  signInWithRedirect,
+  signOut,
+} from "firebase/auth";
 import { auth } from "../firebase";
 import createAxiosInstance from "../utils/axiosInstance";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
@@ -28,38 +35,22 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<UserType | null>(null);
   const [auhtHeader, setAuthHeader] = useState<any>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { isMobile, isTablet } = useMediaQuery();
 
   const googleSignIn = async () => {
-    const provider = new GoogleAuthProvider();
     try {
       setIsLoading(true);
-      const userCredential = await signInWithPopup(auth, provider);
-      const token = await userCredential.user.getIdToken();
-      const { displayName, email, photoURL } = userCredential.user;
-      const axiosInstance = createAxiosInstance(auhtHeader);
-      const googleSignInURL = "/Users/SignUp/Google";
-      const body: GoogleSignInModel = {
-        userName: displayName || "",
-        fullName: displayName || "",
-        email: email || "",
-        photoURL: photoURL,
-        token,
-      };
-
-      const response = await axiosInstance.post(googleSignInURL, body);
-      if (response.status === 200) {
-        setAuthHeader(response.headers["authorization"]);
-        setUser(response.data);
+      localStorage.setItem("isRedirecting", "true");
+      const provider = new GoogleAuthProvider();
+      if (isMobile || isTablet) {
+        await signInWithRedirect(auth, provider);
       } else {
-        console.log("Google Signing failed");
+        await signInWithPopup(auth, provider);
       }
     } catch (err) {
       console.log(err);
-    } finally {
-      setIsLoading(false);
     }
   };
-
   const logIn = async (data: UserLogin) => {
     const { userName, password } = data;
     try {
@@ -107,15 +98,39 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setUser(null);
   };
 
-  // useEffect(() => {
-  //   const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-  //     setUser(currentUser);
-  //     console.log(currentUser);
-  //   });
-  //   return () => {
-  //     unSubscribe();
-  //   };
-  // }, []);
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        setIsLoading(true);
+        const token = await currentUser.getIdToken();
+        const { displayName, email, photoURL } = currentUser;
+        const axiosInstance = createAxiosInstance(auhtHeader);
+        const googleSignInURL = "/Users/SignUp/Google";
+        const body: GoogleSignInModel = {
+          userName: displayName || "",
+          fullName: displayName || "",
+          email: email || "",
+          photoURL: photoURL,
+          token,
+        };
+        const response = await axiosInstance.post(googleSignInURL, body);
+        if (response.status === 200) {
+          setAuthHeader(response.headers["authorization"]);
+          setUser(response.data);
+        } else {
+          console.log("Google Signing failed");
+        }
+        const isRedirecting = localStorage.getItem("isRedirecting");
+        if (isRedirecting === "true") {
+          setIsLoading(false);
+          localStorage.removeItem("isRedirecting");
+        }
+      }
+    });
+    return () => {
+      unSubscribe();
+    };
+  }, []);
   return (
     <AuthContext.Provider
       value={{

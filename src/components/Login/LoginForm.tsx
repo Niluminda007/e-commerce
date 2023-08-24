@@ -10,7 +10,9 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 const LoginForm = () => {
   const { handleSubmit } = useFormContext<UserLogin>();
   const { logIn, isLoading } = UserAuth();
-
+  const isRedirecting =
+    localStorage.getItem("isRedirecting") === "true" || false;
+  const loading = isRedirecting || isLoading;
   const OnValid = async (data: UserLogin) => {
     await logIn(data);
   };
@@ -32,11 +34,11 @@ const LoginForm = () => {
           type="LOGIN"
           color="black"
           loadingText="loging in......"
-          isLoading={isLoading}
+          isLoading={loading}
         />
         <div
           className={`${
-            isLoading ? "opacity-0" : "opacity-100"
+            loading ? "opacity-0" : "opacity-100"
           } ease-linear transition-all flex justify-center flex-col items-center gap-4`}>
           <FormSubmitButton displayValue="Login" />
           <LoginAlternatives />

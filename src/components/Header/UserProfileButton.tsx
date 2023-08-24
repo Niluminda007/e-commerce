@@ -9,7 +9,6 @@ const UserProfileButton = () => {
   const [isDropdownClicked, setIsDropdownClicked] = useState<boolean>(false);
   const userProfilePicture =
     user && user.photoURL !== null ? user.photoURL : defaultUserProfilePicture;
-  console.log(user);
   const handleUserProfile = () => {
     setIsDropdownClicked(!isDropdownClicked);
   };
