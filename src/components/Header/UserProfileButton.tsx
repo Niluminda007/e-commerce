@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { UserAuth } from "../../context/AuthContext";
-import { LuUser } from "react-icons/lu";
+import defaultUserProfilePicture from "../../assets/defaultUser.png";
 import UserProfileDropDown from "./UserProfileDropDown";
 
 const UserProfileButton = () => {
   const { user } = UserAuth();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isDropdownClicked, setIsDropdownClicked] = useState<boolean>(false);
+  const userProfilePicture =
+    user && user.photoURL !== null ? user.photoURL : defaultUserProfilePicture;
+  console.log(user);
   const handleUserProfile = () => {
     setIsDropdownClicked(!isDropdownClicked);
   };
@@ -28,14 +31,10 @@ const UserProfileButton = () => {
       <button
         className="bg-[rgba(0,0,0,0.1)] rounded-full h-10 w-10 text-[1.2rem] flex justify-center items-center transition-all hover:scale-[1.1] hover:shadow-md "
         onClick={handleUserProfile}>
-        {user?.photoURL !== null ? (
-          <img
-            className="h-10 w-10 object-contain rounded-full"
-            src={user?.photoURL}
-          />
-        ) : (
-          <LuUser className="text-black text-[1.5rem]" />
-        )}
+        <img
+          className="h-10 w-10 object-contain rounded-full"
+          src={userProfilePicture}
+        />
       </button>
       <UserProfileDropDown
         IsDropdownClicked={isDropdownClicked}

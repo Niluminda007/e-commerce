@@ -8,7 +8,7 @@ const Layout = () => {
   return (
     <CartProvider>
       <OrderProvider>
-        <div className="flex flex-col w-[100vw] h-[100vh] relative">
+        <div className="flex flex-col  w-screen relative min-h-screen">
           <Header />
           <Outlet />
           <Footer />

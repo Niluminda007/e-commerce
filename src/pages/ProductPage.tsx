@@ -8,7 +8,7 @@ const ProductPage = () => {
 
   return (
     <ProductProvider productId={id!}>
-      <div className="w-[100vw] px:4 sm:px-20 py-4 mt-4  text-black text-xl absolute top-[7rem] flex flex-col lg:flex-row items-center">
+      <div className="w-[100vw] px:4 sm:px-20 py-4 mt-[5rem] sm:mt-[7rem]  text-black text-xl relative h-full  flex flex-col lg:flex-row items-center">
         <ProductImageLayout />
         <ProductPropertyArea />
       </div>

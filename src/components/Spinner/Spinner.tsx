@@ -14,7 +14,9 @@ const Spinner = (props: SpinnerProps) => {
     <div
       className={`${
         isLoading ? "opacity-100 z-10" : "opacity-0 -z-10"
-      } ease-linear transition-all relative w-full h-full`}>
+      } ease-linear transition-all  w-full ${
+        !isLoginOrRegister ? "h-screen absolute " : "h-full relative"
+      }`}>
       <div
         className={`flex flex-col items-center absolute left-[50%]  ${
           !isLoginOrRegister ? " top-[50%] " : " -translate-x-[50%]"

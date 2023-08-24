@@ -14,7 +14,7 @@ const LoginPage = () => {
   });
   return (
     <FormProvider {...form}>
-      <div className=" relative sm:static w-[100vw] h-[100vh] sm:h-auto sm:flex sm:items-center sm:justify-center ">
+      <div className="relative sm:static w-[100vw] h-[100vh] sm:h-auto sm:flex sm:items-center sm:justify-center ">
         <div className="sm:w-[70rem] w-full h-full sm:aspect-[12/8] bg-cold_white shadow-custom_shadow rounded-lg flex relative">
           <LoginBackground />
           <LoginForm />
