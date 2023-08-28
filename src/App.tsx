@@ -1,6 +1,6 @@
 import Layout from "./components/Layout/Layout";
 import LoginPage from "./pages/LoginPage";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import ProductList from "./pages/ProductList";
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
