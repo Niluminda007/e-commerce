@@ -1,6 +1,6 @@
 import Layout from "./components/Layout/Layout";
 import LoginPage from "./pages/LoginPage";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import ProductList from "./pages/ProductList";
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
@@ -10,12 +10,14 @@ import RegisterPage from "./pages/RegisterPage";
 import { Orders } from "./components/Account/Orders";
 import MyDetails from "./components/Account/MyDetails";
 import MyProfileLayout from "./components/Layout/MyProfileLayout";
+import { AnimatePresence } from "framer-motion";
 
 const App = () => {
+  const location = useLocation();
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
+      <AnimatePresence mode="wait">
+        <Routes key={location.pathname} location={location}>
           <Route index element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route
@@ -37,7 +39,7 @@ const App = () => {
           </Route>
           <Route />
         </Routes>
-      </BrowserRouter>
+      </AnimatePresence>
     </AuthProvider>
   );
 };
