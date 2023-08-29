@@ -6,7 +6,7 @@ type MyProfileAnimatedRouteProps = {
 };
 
 const PageTransition = ({ children }: MyProfileAnimatedRouteProps) => {
-  const transition = { duration: 0.6, ease: "ease" };
+  const transition = { duration: 0.6, ease: "easeInOut" };
 
   return (
     <motion.div
