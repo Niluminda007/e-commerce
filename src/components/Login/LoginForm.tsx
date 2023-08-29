@@ -13,11 +13,12 @@ const LoginForm = () => {
   const isRedirecting =
     localStorage.getItem("isRedirecting") === "true" || false;
   const loading = isRedirecting || isLoading;
+
   const OnValid = async (data: UserLogin) => {
     await logIn(data);
+    localStorage.setItem("isRedirecting", "false");
   };
   const { isMobile } = useMediaQuery();
-
   return (
     <div
       className={` ${
