@@ -19,6 +19,7 @@ const LoginForm = () => {
     localStorage.setItem("isRedirecting", "false");
   };
   const { isMobile } = useMediaQuery();
+  console.log(isRedirecting);
   return (
     <div
       className={` ${

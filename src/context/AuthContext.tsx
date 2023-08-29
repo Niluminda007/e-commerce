@@ -49,6 +49,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
     } catch (err) {
       console.log(err);
+    } finally {
+      setIsLoading(false);
     }
   };
   const logIn = async (data: UserLogin) => {
