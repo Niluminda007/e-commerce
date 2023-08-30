@@ -7,8 +7,8 @@ import { UserAuth } from "../../context/AuthContext";
 const ProductSearch = () => {
   const [searchText, setSearchText] = useState<string>("");
   const [inputFocused, setInputFocused] = useState<boolean>(false);
-  const { auhtHeader } = UserAuth();
-  const { data, searchProducts, setData } = useFetchProductSearch(auhtHeader);
+  const { authHeader } = UserAuth();
+  const { data, searchProducts, setData } = useFetchProductSearch(authHeader);
 
   useEffect(() => {
     const delay = 300;
