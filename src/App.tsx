@@ -16,7 +16,7 @@ const App = () => {
   const location = useLocation();
   return (
     <AuthProvider>
-      <AnimatePresence initial={false} mode="wait">
+      <AnimatePresence mode="wait">
         <Routes key={location.pathname} location={location}>
           <Route index element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
