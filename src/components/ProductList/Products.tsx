@@ -8,7 +8,7 @@ type ProductsProps = {
 const Products = (props: ProductsProps) => {
   const { products } = props;
   return (
-    <div className="w-full px:4 mt-4 flex flex-wrap relative sm:justify-between justify-center">
+    <div className="w-full px:4 mt-4 flex flex-wrap relative sm:justify-between justify-center sm:px-0 px-2">
       {products.length > 0
         ? products.map((product, index) => (
             <ProductCard key={index} {...product} />
