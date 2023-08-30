@@ -26,16 +26,16 @@ const fetchOrdersData = async (userId: number, authHeader: any) => {
 
 const OrderProvider: React.FC<OrderProviderProps> = ({ children }) => {
   const [orders, setOrders] = useState<OrderType[]>([]);
-  const { user, auhtHeader } = UserAuth();
+  const { user, authHeader } = UserAuth();
 
   useEffect(() => {
     fetchOrders();
-  }, [user, auhtHeader]);
+  }, [user, authHeader]);
 
   const fetchOrders: () => Promise<void> = async () => {
     if (user) {
       try {
-        const ordersData = await fetchOrdersData(user.id, auhtHeader);
+        const ordersData = await fetchOrdersData(user.id, authHeader);
         setOrders(ordersData);
       } catch (err) {
         console.log(err);
@@ -45,7 +45,7 @@ const OrderProvider: React.FC<OrderProviderProps> = ({ children }) => {
   const placeOrder = async (items: CartItem[], total: number) => {
     if (items.length > 0 && user) {
       const placecOrderURL = "/Order/Orders/PlaceOrder";
-      const axiosInstance = createAxiosInstance(auhtHeader);
+      const axiosInstance = createAxiosInstance(authHeader);
       const orderItems: OrderItemType[] = items.map((item) => ({
         quantity: item.quantity,
         product: item.product,
