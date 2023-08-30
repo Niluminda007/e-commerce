@@ -11,11 +11,9 @@ import { Orders } from "./components/Account/Orders";
 import MyDetails from "./components/Account/MyDetails";
 import MyProfileLayout from "./components/Layout/MyProfileLayout";
 import { AnimatePresence } from "framer-motion";
-import useMediaQuery from "./hooks/useMediaQuery";
 
 const App = () => {
   const location = useLocation();
-  const { isMobile } = useMediaQuery();
   return (
     <AuthProvider>
       <AnimatePresence initial={false} mode="wait">
