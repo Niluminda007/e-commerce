@@ -5,7 +5,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { userLoginValidationSchema } from "../schemas/userLoginSchema";
 import LoginBackground from "../components/Login/LoginBackground";
 import { motion } from "framer-motion";
-import useMediaQuery from "../hooks/useMediaQuery";
 const LoginPage = () => {
   const form = useForm<UserLogin>({
     resolver: yupResolver(userLoginValidationSchema) as Resolver<
