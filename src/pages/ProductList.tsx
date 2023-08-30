@@ -8,7 +8,7 @@ import Spinner from "../components/Spinner/Spinner";
 import { UserAuth } from "../context/AuthContext";
 
 const ProductListStyleBaseClass =
-  "w-[100vw] sm:mt-[8.125rem] mt-[5rem] px:4 sm:px-20 bg-transparent py-6 flex flex-col h-full transition ease-linear delay-[10ms] relative z-[20]";
+  "w-full sm:mt-[8.125rem] mt-[5rem] px:4 sm:px-20 bg-transparent py-6 flex flex-col h-full transition ease-linear delay-[10ms] relative z-[20]";
 
 const ProductList = () => {
   const { categoryName } = useParams<string>();

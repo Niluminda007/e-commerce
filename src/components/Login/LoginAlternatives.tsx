@@ -12,7 +12,9 @@ const LoginAlternatives = () => {
 
       <GoogleLoginButton />
       <div className="flex mt-8 gap-2">
-        <p className="text-lg text-slate-900 font-medium">Not Registered?</p>
+        <p className="text-lg text-[rgba(255,255,255,.8)] sm:text-slate-900 font-medium">
+          Not Registered?
+        </p>
         <Link to="/register" className="flex justify-center items-center">
           <span className=" text-purple-700  ease-linear transition-all hover:scale-[1.2]">
             Register

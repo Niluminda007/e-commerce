@@ -24,13 +24,15 @@ const LoginForm = () => {
       <form
         autoComplete="off"
         onSubmit={handleSubmit(OnValid)}
-        className="sm:static z-10   bg-cold_white sm:bg-transparent  flex flex-col items-center px-4 py-4 rounded-sm sm:rounded-none sm:px-6 sm:py-8">
-        <h1 className="text-dark_black text-[3rem] mb-8">Login</h1>
+        className="sm:static z-10   bg-transparent sm:bg-white sm:bg-transparent  flex flex-col items-center px-4 py-4 rounded-sm sm:rounded-none sm:px-6 sm:py-8">
+        <h1 className="sm:text-dark_black text-white text-[3rem] mb-8">
+          Login
+        </h1>
         <InputField name="userName" type="text" />
         <InputField name="password" type="password" />
         <Spinner
           type="LOGIN"
-          color="black"
+          color={isMobile ? "white" : "black"}
           loadingText="loging in......"
           isLoading={loading}
         />

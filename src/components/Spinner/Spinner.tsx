@@ -1,3 +1,5 @@
+import useMediaQuery from "../../hooks/useMediaQuery";
+
 type SpinnerProps = {
   color: string;
   type: "LOGIN" | "REGISTER" | "OTHER";
@@ -7,9 +9,11 @@ type SpinnerProps = {
 };
 
 const Spinner = (props: SpinnerProps) => {
+  const { isMobile } = useMediaQuery();
   const { color, type, loadingText, isLoading, textColor } = props;
   const isLoginOrRegister = type !== "OTHER";
-  const loadingTextColor = textColor ? textColor : "black";
+  const loadingTextColor = isMobile ? "white" : textColor ? textColor : "black";
+
   return (
     <div
       className={`${
