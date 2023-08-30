@@ -83,12 +83,13 @@ export type AttributeContextType = {
 
 export type AuthContextType = {
   user: UserType | null;
-  auhtHeader: string;
+  authHeader: string;
   googleSignIn: () => Promise<void>;
   logOut: () => void;
   logIn: (data: UserLogin) => Promise<void>;
   registerUser: (data: UserRegisterModel) => Promise<void>;
   isLoading: boolean;
+  checkAuthentication: () => boolean;
 };
 
 export type OrderContextType = {

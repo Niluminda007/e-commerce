@@ -25,11 +25,10 @@ const ProductProvider: React.FC<ProductProviderProps> = ({
   productId,
   children,
 }) => {
-  const { auhtHeader } = UserAuth();
-  const { product, loading, error } = useFetchProduct(productId, auhtHeader);
+  const { authHeader } = UserAuth();
+  const { product, loading, error } = useFetchProduct(productId, authHeader);
   const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
   const [sliderDirection, setsliderDirection] = useState<string>("none");
-
   const setActiveImage = (index: number) => {
     setActiveImageIndex(index);
   };

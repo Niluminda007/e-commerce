@@ -14,15 +14,16 @@ const ProductList = () => {
   const { categoryName } = useParams<string>();
   const { fetchProductsByCategory, isLoading, data } =
     useFetchProductsByCategory();
-  const { auhtHeader } = UserAuth();
+  const { authHeader } = UserAuth();
+
   const category = categories.find((item) => item.name === categoryName);
   const activeCategory = useMemo(
     () => (category === undefined ? 1 : category!.id),
     [categoryName]
   );
   useEffect(() => {
-    fetchProductsByCategory(activeCategory, auhtHeader);
-  }, [activeCategory]);
+    fetchProductsByCategory(activeCategory, authHeader);
+  }, [activeCategory, authHeader]);
   return (
     <>
       <Spinner

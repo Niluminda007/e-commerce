@@ -10,16 +10,12 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 const LoginForm = () => {
   const { handleSubmit } = useFormContext<UserLogin>();
   const { logIn, isLoading } = UserAuth();
-  const isRedirecting =
-    localStorage.getItem("isRedirecting") === "true" || false;
+  const isRedirecting = !!sessionStorage.getItem("isRedirecting");
   const loading = isRedirecting || isLoading;
-
   const OnValid = async (data: UserLogin) => {
     await logIn(data);
-    localStorage.setItem("isRedirecting", "false");
   };
   const { isMobile } = useMediaQuery();
-  console.log(isRedirecting);
   return (
     <div
       className={` ${

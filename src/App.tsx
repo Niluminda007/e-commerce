@@ -20,24 +20,21 @@ const App = () => {
         <Routes key={location.pathname} location={location}>
           <Route index element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route
-            element={
-              <ProtectedRoute>
-                <Layout />
-              </ProtectedRoute>
-            }>
-            <Route path="/home" element={<ProductList />} />
-            <Route path="myProfile" element={<MyProfileLayout />}>
-              <Route index element={<MyDetails />} />
-              <Route path="orders" element={<Orders />} />
-            </Route>
+          <Route element={<ProtectedRoute />}>
+            <Route element={<Layout />}>
+              <Route path="/home" element={<ProductList />} />
+              <Route path="myProfile" element={<MyProfileLayout />}>
+                <Route index element={<MyDetails />} />
+                <Route path="orders" element={<Orders />} />
+              </Route>
 
-            <Route path="/products" element={<ProductList />} />
-            <Route path="/category/:categoryName" element={<ProductList />} />
-            <Route path="/product/:id" element={<ProductPage />} />
-            <Route path="/cart" element={<CartPage />} />
+              <Route path="/products" element={<ProductList />} />
+              <Route path="/category/:categoryName" element={<ProductList />} />
+              <Route path="/product/:id" element={<ProductPage />} />
+              <Route path="/cart" element={<CartPage />} />
+            </Route>
+            <Route />
           </Route>
-          <Route />
         </Routes>
       </AnimatePresence>
     </AuthProvider>

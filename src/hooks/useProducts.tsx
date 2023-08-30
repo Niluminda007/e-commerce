@@ -52,7 +52,7 @@ const useFetchProduct = (id: string, authHeader: any) => {
     if (id) {
       fetchData();
     }
-  }, [id]);
+  }, [id, authHeader]);
 
   return { product, loading, error };
 };
