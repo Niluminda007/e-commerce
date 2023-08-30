@@ -5,7 +5,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { userRegisterValidationSchema } from "../schemas/userRegisterSchema";
 import RegisterBackground from "../assets/bg_reg_3.png";
 import { motion } from "framer-motion";
-
 const RegisterPage = () => {
   const registerForm = useForm<UserRegisterModel>({
     resolver: yupResolver(userRegisterValidationSchema) as Resolver<
