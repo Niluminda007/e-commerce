@@ -41,14 +41,12 @@ To explore our project locally, follow these simple steps:
    git clone https://github.com/Niluminda007/e-commerce.git
 Install the necessary dependencies for frontend:
 
-bash
-Copy code
-npm install
+2. **Install necessary packages and run the application locally:**
+   ```bash
+   npm install
+   npm run dev
 Run the application locally and start exploring:
 
-bash
-Copy code
-npm run-dev
 Contributions 🤝
 We welcome contributions from the community to make the E-Commerce Web Application even better. If you have ideas, suggestions, or bug reports, please don't hesitate to open an issue or submit a pull request.
 
